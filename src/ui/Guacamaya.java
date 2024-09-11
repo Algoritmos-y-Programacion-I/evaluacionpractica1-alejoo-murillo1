@@ -99,32 +99,93 @@ public class Guacamaya {
 
     }
 
+    /**
+     * Descripción: Este método está encargado de, por medio de un ciclo, preguntarle al usuario por consola el precio y unidades vendidas de cada artículo vendido 
+     * durante el día. A continuación, almacena los datos en un dos arreglos, precios y unidades, respectivamente.
+     * pre: Clase Scanner debe ser declarada e inicializada.
+     * pre: Los arreglos "precios" y "unidades" deben haber sido inicializados previamente, y deben estar vacíos.
+     * pos: Los arreglos "precios" y "unidades" salen llenos, cada uno con ejemplares del tipo de dato correspondiente (double e int, respectivamente.)
+    */
+
     public static void solicitarDatos(){
+        for(int i=0; i<unidades.length; i++){
+            System.out.println("Digite el precio del artculo: "+(i+1));
+            precios[i] = reader.nextDouble();
+
+            System.out.println("Digite la cantidad de unidades vendidas del articulo: " +(i+1));
+            unidades[i] = reader.nextInt();
+        }
+       
 
      
     }
 
+    /**
+     *Descripción: El método, dado un arreglo LLENO de unidades vendidas, itera sobre el array y suma las cantidades de 
+     cada posición. Esta sumatoria se aloja en una variable int unidadesTotales.
+     pre: El arreglo de unidades debe ser previamente inicializado, y debe contener datos en todas sus posiciones.
+     @return int unidadesTotales: Variable donde se aloja la sumatoria de artículos del arreglo.
+    */
     public static int calcularTotalUnidadesVendidas(){
-
-        return 0;
+        int unidadesTotales = 0;
+        for(int i=0; i<unidades.length; i++){
+            unidadesTotales += unidades[i];
+        }
+        return unidadesTotales;
 
     }
 
+    /**
+     * Descripción: Este método, dado un arreglo LLENO de precios de artículos, itera sobre el array y suma las cantidades de 
+     * cada posición, cantidad que guarda en la variable double precioPromedio. A continuación, divide precioPromedio (la sumatoria)
+     * entre el tamaño del arreglo.
+     * pre: Arreglo precios debe haber sido inicializado previamente, y debe estar lleno de datos double en todas sus posiciones. 
+     * @return double precioPromedio: Precio promedio de los artículos insertados.
+     */
     public static double calcularPrecioPromedio(){
-
-        return 0;
+        double precioPromedio = 0;
+        for(int i=0; i<precios.length; i++){
+            precioPromedio += precios[i];
+        }
+        precioPromedio /= precios.length;
+        return precioPromedio;
 
     }
 
+    /**
+     * Descripción: El método calcula el dinero recuadado durante el día. Dados los arreglos LLENOS de unidades y precios, 
+     * itera sobre ellos, multiplicando las unidades vendidas por el precio del artículo en cada posición; la variable double 
+     * dineroRecaudado suma el resultado de cada iteración hasta el final del tamaño del arreglo.
+     * pre: Los arreglos de "unidades" y "precios" deben haber sido inicializados, y estar llenos con datos del tipo correspondiente.
+     * @return double dineroRecaudado: Sumatoria total de las ventas del día.
+     */
     public static double calcularVentasTotales(){
-
-        return 0;
+        double dineroRecaudado = 0;
+        for(int i=0; i<unidades.length; i++){
+            dineroRecaudado += (unidades[i] * precios[i]);
+        }
+        return dineroRecaudado;
 
     }
 
+    /**
+     * Descripción: Este método cuenta el número de referencias que superan un límite de dinero recaudado insertado por el usuario. Itera sobre los arreglos
+     * precio y unidades, multiplicando el contenido de cada posición en los arreglos; si la venta del artículo es mayor al límite, se suma 1 al número de referencias.
+     * pre: Los arreglos de "unidades" y "precios" deben haber sido inicializados, y estar llenos con datos del tipo correspondiente.
+     * @param double limite: Limite mínimo de dinero recaudado, usado para hacer la comparación, y definir si el valor pasa del límite o no.
+     * @return int referenciasLimite: Número de referencias que superan el límite de dinero recaudado.
+     */
     public static int consultarReferenciasSobreLimite(double limite){
-
-        return 0;
+        int referenciasLimite = 0;
+        double auxiliar;
+        for(int i=0; i<precios.length; i++){
+            auxiliar = (unidades[i] * precios[i]);
+            if(auxiliar > limite){
+                referenciasLimite += 1;
+            }
+        }
+        
+        return referenciasLimite;
 
     }
 
